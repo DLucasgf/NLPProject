@@ -9,6 +9,19 @@ docs_list = os.listdir('docs')
 docs_list2 = docs_list[5:10]
 outputs = "outputs"
 
+lol = ['oi', 'aqui']
+
+stoptst = [ 'na',
+            'das',
+            'esse',
+            'teremos', 'terá', 'houve', 'houverem', 'somos', 'con', 'nos', 'ou', 'teria', 'tinha', 'del', 'estivéssemos', 'tive', 'tenhamos', 'já', 'aquilo', 'aquele', 'só', 'havemos', 'sejamos', 'aquela', 'tínhamos', 'tinham', 'teve', 'estivemos', 'tenho', 'um', 'esta', 'houvesse', 'estas', 'este', 'una', 'ter', 'houveram', 'houvessem', 'que', 'houvéssemos', 'teu', 'tiverem', 'nas', 'houver', 'tivermos', 'seu', 'essas', 'como', 'estava', 'seriam', 'meu', 'hão', 'da', 'las', 'pode', 'tivemos', 'houvemos', 'tiver', 'eu', 'do', 'tenha', 'tivéssemos', 'se', 'vocês', 'aos', 'houveria', 'estavam', 'meus', 'foi', 'tem', 'nós', 'o', 'a', 'você', 'estão', 'tu', 'nem', 'houveríamos', 'lhe', 'numa', 'te', 'está', 'sou', 'houverá', 'éramos', 'eram', 'fossem', 'esteve', 'tém', 'seus', 'era', 'ela', 'ele', 'houvera', 'sem', 'pelo', 'para', 'lhes', 'minhas', 'mesmo', 'dele', 'isso', 'nosso', 'estive', 'estamos', 'fôramos', 'terei', 'hei', 'é', 'haja', 'seríamos', 'no', 'tivéramos', 'de', 'ser', 'houverão', 'havia', 'fora', 'estes', 'forem', 'mas', 'muito', 'sejam', 'houvermos', 'estivermos', 'fosse', 'podem', 'estiver', 'tivera', 'estivera', 'estivesse', 'teus', 'nesse', 'esses', 'estou', 'dos', 'me', 'quem', 'seria', 'seremos', 'tiveram', 'houvéramos', 'seja', 'sua', 'suas', 'esteja', 'fui', 'estejam', 'há', 'estiverem', 'maior', 'num', 'houveremos', 'também', 'temos', 'mais', 'hajam', 'assim', 'os', 'houverei', 'quando', 'será', 'estiveram', 'qual', 'estávamos', 'p', 'estivéramos', 'terão', 'uma', 'às', 'serei', 'têm', 'foram', 'vos', 'for', 'teríamos', 'teriam', 'sobre', 'sendo', 'isto', 'estejamos', 'depois', 'pela', 'pelas', 'fôssemos', 'não', 'à', 'los', 'nossas', 'com', 'em', 'ao', 'tuas', 'estivessem', 'e', 'até', 'eles', 'minha', 'deles', 'tua', 'são', 'formos', 'nossos', 'as', 'delas', 'hajamos', 'fomos', 'tenham', 'aquelas', 'elas', 'nossa', 'serão', 'aqueles', 'por', 'essa', 'dela', 'tivesse', 'tivessem', 'entre', 'houveriam', 'pelos' ]
+
+stoptst.sort()
+
+print('-----------------------------------------------------------------------------')
+print(stoptst)
+print('-----------------------------------------------------------------------------')
+
 #for i in range(1, 5):
 #    arr14.append(os.listdir('docs\\2014v19\\{}'.format(i)))
 
@@ -31,6 +44,10 @@ print("Número de documentos: {}".format(len(docs_raw)))
 # tokenize
 gen_docs = [[w.lower() for w in word_tokenize(text)] for text in docs_raw]
 #print(gen_docs)
+for i in range(0, len(gen_docs)):
+    file = open('outputs/doc{}.txt'.format(i), 'w', encoding="utf8")
+    file.write(str(gen_docs[i]))
+    file.close()
 
 
 # dictionary
@@ -80,10 +97,15 @@ for item in f_str:
     tmp = item.strip('\n')
     f_str_norm.append(tmp)
 print(f_str_norm[0])
-stop = set(f_str_norm)
+#stop = set(f_str_norm)
+stop = set(stoptst)
 f_object.close()
 print("Stopwords: {}".format(len(stop)))
 print(stop)
+print("len f: {}".format(len(f_str_norm)))
+print("len stop: {}".format(len(stop)))
+#for i in range(0, len(f_str_norm)):
+#    print("Algo {} : {}".format(i, f_str_norm[i]))
 
 
 #print("Stopwords: {}".format(len((stopwords.words('portuguese')))))
@@ -94,9 +116,15 @@ def clean(doc, stop):
     stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
     punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
     #normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
+    #print("passou aqui")
     return punc_free
 
 doc_clean = [clean(doc, stop).split() for doc in docs_raw]
+
+for i in range(0, len(doc_clean)):
+    file = open('outputs/docC{}.txt'.format(i), 'w', encoding="utf8")
+    file.write(str(doc_clean[i]))
+    file.close()
 
 
 dictionary = corpora.Dictionary(doc_clean)
@@ -122,3 +150,10 @@ print(ldatmp[0])
 for i in range(0, n_topics):
     print('Topic {}'.format(i))
     print(ldamodel.show_topic(topicid=i, topn=10))
+
+
+print("topic analise")
+print(ldamodel.show_topic(topicid=7, topn=10))
+
+tmptst = ldamodel.show_topic(topicid=7, topn=10)
+print(tmptst[6][0])
