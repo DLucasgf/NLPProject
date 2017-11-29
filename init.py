@@ -112,20 +112,56 @@ print("len stop: {}".format(len(stop)))
 #print(stopwords.words('portuguese'))
 exclude = set(string.punctuation)
 #lemma = WordNetLemmatizer()
-def clean(doc, stop):
+def clean(doc):
+    # remove stopwords
     stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
+    output_t = [w for w in doc.lower().split() if not w in stop]
+    # remove punctuation
     punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
+    # remove numbers
+    numbers_free = ''.join([i for i in punc_free if not i.isdigit()])
     #normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
     #print("passou aqui")
-    return punc_free
 
-doc_clean = [clean(doc, stop).split() for doc in docs_raw]
+    # tmp
+    doc_split = doc.lower()
+    punc_free2 = ''.join(ch for ch in doc_split if ch not in exclude)
+    stop_free2 = " ".join([i for i in punc_free2.split() if i not in stop])
+    numbers_free2 = ''.join([i for i in stop_free2 if not i.isdigit()])
+    file = open('outputs/doc_split.txt', 'w', encoding="utf8")
+    file.write(str(doc_split))
+    file.close()
+    file = open('outputs/punc_free.txt', 'w', encoding="utf8")
+    file.write(str(punc_free2))
+    file.close()
+    file = open('outputs/stop_free.txt', 'w', encoding="utf8")
+    file.write(str(stop_free2))
+    file.close()
+    file = open('outputs/numbers_free.txt', 'w', encoding="utf8")
+    file.write(str(numbers_free2))
+    file.close()
+
+    
+    print('stop---------------------------------------------------')
+    print(stop_free)
+    print('---------------------------------------------------')
+    print('stop2---------------------------------------------------')
+    print(output_t)
+    print('---------------------------------------------------')
+    return numbers_free2
+
+doc_clean = [clean(doc).split() for doc in docs_raw]
+
+print(string.punctuation)
 
 for i in range(0, len(doc_clean)):
     file = open('outputs/docC{}.txt'.format(i), 'w', encoding="utf8")
     file.write(str(doc_clean[i]))
     file.close()
 
+#file = open('outputs/stops.txt', 'w', encoding="utf8")
+#file.write(str(stopwords.words('portuguese')))
+#file.close()
 
 dictionary = corpora.Dictionary(doc_clean)
 
