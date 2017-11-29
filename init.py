@@ -83,7 +83,8 @@ n_topics = 10
 ldamodel = Lda(doc_term_matrix, num_topics=n_topics, id2word = dictionary, passes=50)
 
 #print(ldamodel.print_topics(num_topics=n_topics, num_words=10))
-#print(ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=True))
+print('Sem formatação')
+print(ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=False))
 
 #ldatmp = ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=True)
 #print('teste')
