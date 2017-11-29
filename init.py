@@ -30,7 +30,7 @@ print("Número de documentos: {}".format(len(docs_raw)))
 
 # tokenize
 gen_docs = [[w.lower() for w in word_tokenize(text)] for text in docs_raw]
-#print(gen_docs)
+# salvando docs tokenizados
 for i in range(0, len(gen_docs)):
     file = open('outputs/doc{}.txt'.format(i), 'w', encoding="utf8")
     file.write(str(gen_docs[i]))
@@ -48,8 +48,6 @@ print("Número de palavras no dicionário: {}".format(len(dictionary)))
 
 # BoW
 corpus = [dictionary.doc2bow(gen_doc) for gen_doc in gen_docs]
-#for d in corpus:
-#    print(d)
 
 # tf idf do corpus
 tf_idf = gensim.models.TfidfModel(corpus)
@@ -84,19 +82,15 @@ for item in f_str:
     tmp = item.strip('\n')
     f_str_norm.append(tmp)
 print(f_str_norm[0])
-#stop = set(f_str_norm)
-stop = set(stoptst)
+stop = set(f_str_norm)
+#stop = set(stoptst)
 f_object.close()
 print("Stopwords: {}".format(len(stop)))
 print(stop)
 print("len f: {}".format(len(f_str_norm)))
 print("len stop: {}".format(len(stop)))
-#for i in range(0, len(f_str_norm)):
-#    print("Algo {} : {}".format(i, f_str_norm[i]))
 
 
-#print("Stopwords: {}".format(len((stopwords.words('portuguese')))))
-#print(stopwords.words('portuguese'))
 exclude = set(string.punctuation)
 def clean(doc):
     # remove stopwords
@@ -143,9 +137,6 @@ for i in range(0, len(doc_clean)):
     file.write(str(doc_clean[i]))
     file.close()
 
-#file = open('outputs/stops.txt', 'w', encoding="utf8")
-#file.write(str(stopwords.words('portuguese')))
-#file.close()
 
 dictionary = corpora.Dictionary(doc_clean)
 
