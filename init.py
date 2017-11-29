@@ -16,7 +16,7 @@ outputs = "outputs"
 
 # read docs
 docs_raw = []
-for item in docs_list:
+for item in docs_list2:
     file = os.path.join('docs', item)
     f_object = open(file, 'r', encoding="utf8")
     docs_raw.append(f_object.read())
@@ -24,31 +24,6 @@ for item in docs_list:
 
 
 print("Número de documentos: {}".format(len(docs_raw)))
-
-# tokeniziando docs pra gerar o dicionário
-gen_docs = [[w.lower() for w in word_tokenize(text)] for text in docs_raw]
-# salvando docs tokenizados
-for i in range(0, len(gen_docs)):
-    file = open('outputs/doc{}.txt'.format(i), 'w', encoding="utf8")
-    file.write(str(gen_docs[i]))
-    file.close()
-
-
-# dictionary
-dictionary = gensim.corpora.Dictionary(gen_docs)
-
-# BoW
-corpus = [dictionary.doc2bow(gen_doc) for gen_doc in gen_docs]
-
-# tf idf do corpus
-tf_idf = gensim.models.TfidfModel(corpus)
-s = 0
-for i in corpus:
-    s += len(i)
-
-
-# similaridade dos objetos
-sims = gensim.similarities.Similarity(outputs,tf_idf[corpus],num_features=len(dictionary))
 
 
 # lê o arquivo com as stopwords
@@ -62,7 +37,6 @@ for item in f_str:
 f_object.close()
 # elimina stopwords repetidas
 stop = set(f_str_norm)
-
 # seleciona as pontuações a serem eliminadas
 exclude = set(string.punctuation)
 
@@ -94,12 +68,6 @@ def clean(doc):
     return numbers_free
 
 doc_clean = [clean(doc).split() for doc in docs_raw]
-
-
-for i in range(0, len(doc_clean)):
-    file = open('outputs/docC{}.txt'.format(i), 'w', encoding="utf8")
-    file.write(str(doc_clean[i]))
-    file.close()
 
 
 dictionary = corpora.Dictionary(doc_clean)
