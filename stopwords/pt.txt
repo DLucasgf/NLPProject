@@ -1,5 +1,13 @@
-﻿que
+﻿
 assim
+além
+pois
+vez
+assim
+outro
+outros
+outra
+outras
 podem
 las
 los
@@ -12,7 +20,18 @@ nesse
 sendo
 una
 de
+que
 p
+p.
+et
+al
+al
+et al
+et al.
+apud
+e
+cada
+é
 a
 o
 do
@@ -20,8 +39,6 @@ da
 em
 um
 para
-é
-e
 com
 não
 uma
