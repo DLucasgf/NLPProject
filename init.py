@@ -98,43 +98,40 @@ print("len stop: {}".format(len(stop)))
 #print("Stopwords: {}".format(len((stopwords.words('portuguese')))))
 #print(stopwords.words('portuguese'))
 exclude = set(string.punctuation)
-#lemma = WordNetLemmatizer()
 def clean(doc):
     # remove stopwords
-    stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
-    output_t = [w for w in doc.lower().split() if not w in stop]
+    #stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
+    #output_t = [w for w in doc.lower().split() if not w in stop]
     # remove punctuation
-    punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
+    #punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
     # remove numbers
-    numbers_free = ''.join([i for i in punc_free if not i.isdigit()])
+    #numbers_free = ''.join([i for i in punc_free if not i.isdigit()])
     #normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
     #print("passou aqui")
 
-    # tmp
+    # to lower doc
     doc_split = doc.lower()
+    # remove punctuation
     punc_free2 = ''.join(ch for ch in doc_split if ch not in exclude)
+    # remove stopwords
     stop_free2 = " ".join([i for i in punc_free2.split() if i not in stop])
+    # remove numbers
     numbers_free2 = ''.join([i for i in stop_free2 if not i.isdigit()])
-    file = open('outputs/doc_split.txt', 'w', encoding="utf8")
+
+    # save temp files
+    file = open('tmp/doc_split.txt', 'w', encoding="utf8")
     file.write(str(doc_split))
     file.close()
-    file = open('outputs/punc_free.txt', 'w', encoding="utf8")
+    file = open('tmp/punc_free.txt', 'w', encoding="utf8")
     file.write(str(punc_free2))
     file.close()
-    file = open('outputs/stop_free.txt', 'w', encoding="utf8")
+    file = open('tmp/stop_free.txt', 'w', encoding="utf8")
     file.write(str(stop_free2))
     file.close()
-    file = open('outputs/numbers_free.txt', 'w', encoding="utf8")
+    file = open('tmp/numbers_free.txt', 'w', encoding="utf8")
     file.write(str(numbers_free2))
     file.close()
 
-    
-    print('stop---------------------------------------------------')
-    print(stop_free)
-    print('---------------------------------------------------')
-    print('stop2---------------------------------------------------')
-    print(output_t)
-    print('---------------------------------------------------')
     return numbers_free2
 
 doc_clean = [clean(doc).split() for doc in docs_raw]
