@@ -9,26 +9,13 @@ docs_list = os.listdir('docs')
 docs_list2 = docs_list[5:10]
 outputs = "outputs"
 
-lol = ['oi', 'aqui']
-
-stoptst = [ 'na',
-            'das',
-            'esse',
-            'teremos', 'terá', 'houve', 'houverem', 'somos', 'con', 'nos', 'ou', 'teria', 'tinha', 'del', 'estivéssemos', 'tive', 'tenhamos', 'já', 'aquilo', 'aquele', 'só', 'havemos', 'sejamos', 'aquela', 'tínhamos', 'tinham', 'teve', 'estivemos', 'tenho', 'um', 'esta', 'houvesse', 'estas', 'este', 'una', 'ter', 'houveram', 'houvessem', 'que', 'houvéssemos', 'teu', 'tiverem', 'nas', 'houver', 'tivermos', 'seu', 'essas', 'como', 'estava', 'seriam', 'meu', 'hão', 'da', 'las', 'pode', 'tivemos', 'houvemos', 'tiver', 'eu', 'do', 'tenha', 'tivéssemos', 'se', 'vocês', 'aos', 'houveria', 'estavam', 'meus', 'foi', 'tem', 'nós', 'o', 'a', 'você', 'estão', 'tu', 'nem', 'houveríamos', 'lhe', 'numa', 'te', 'está', 'sou', 'houverá', 'éramos', 'eram', 'fossem', 'esteve', 'tém', 'seus', 'era', 'ela', 'ele', 'houvera', 'sem', 'pelo', 'para', 'lhes', 'minhas', 'mesmo', 'dele', 'isso', 'nosso', 'estive', 'estamos', 'fôramos', 'terei', 'hei', 'é', 'haja', 'seríamos', 'no', 'tivéramos', 'de', 'ser', 'houverão', 'havia', 'fora', 'estes', 'forem', 'mas', 'muito', 'sejam', 'houvermos', 'estivermos', 'fosse', 'podem', 'estiver', 'tivera', 'estivera', 'estivesse', 'teus', 'nesse', 'esses', 'estou', 'dos', 'me', 'quem', 'seria', 'seremos', 'tiveram', 'houvéramos', 'seja', 'sua', 'suas', 'esteja', 'fui', 'estejam', 'há', 'estiverem', 'maior', 'num', 'houveremos', 'também', 'temos', 'mais', 'hajam', 'assim', 'os', 'houverei', 'quando', 'será', 'estiveram', 'qual', 'estávamos', 'p', 'estivéramos', 'terão', 'uma', 'às', 'serei', 'têm', 'foram', 'vos', 'for', 'teríamos', 'teriam', 'sobre', 'sendo', 'isto', 'estejamos', 'depois', 'pela', 'pelas', 'fôssemos', 'não', 'à', 'los', 'nossas', 'com', 'em', 'ao', 'tuas', 'estivessem', 'e', 'até', 'eles', 'minha', 'deles', 'tua', 'são', 'formos', 'nossos', 'as', 'delas', 'hajamos', 'fomos', 'tenham', 'aquelas', 'elas', 'nossa', 'serão', 'aqueles', 'por', 'essa', 'dela', 'tivesse', 'tivessem', 'entre', 'houveriam', 'pelos' ]
-
-stoptst.sort()
-
-print('-----------------------------------------------------------------------------')
-print(stoptst)
-print('-----------------------------------------------------------------------------')
-
 #for i in range(1, 5):
 #    arr14.append(os.listdir('docs\\2014v19\\{}'.format(i)))
 
 #print(docs_list)
 #print(len(docs_list))
 
-# ler documentos
+# read docs
 docs_raw = []
 #for item in docs_list:
 for item in docs_list2:
