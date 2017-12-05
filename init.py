@@ -29,6 +29,7 @@ for item in docs_list2:
 
 
 print("Número de documentos: {}".format(len(docs_raw)))
+separador()
 
 
 # lê o arquivo com as stopwords
@@ -44,6 +45,17 @@ f_object.close()
 stop = set(f_str_norm)
 # seleciona as pontuações a serem eliminadas
 exclude = set(string.punctuation)
+
+
+# stopwords len
+print("Número de stopwords: {}".format(len(stop)))
+# punctuation len
+print("Número de punctuation: {}".format(len(exclude)))
+
+# stop lib
+#print("Número de stopwords do NLTK: {}".format(len(stopwords.words("portuguese"))))
+#print(stopwords.words("portuguese"))
+
 
 # limpeza e preprocessamento
 def clean(doc):
@@ -63,7 +75,16 @@ doc_clean = [clean(doc).split() for doc in docs_raw]
 
 dictionary = corpora.Dictionary(doc_clean)
 
+# dictionary
+print('Dicionário')
+print(dictionary)
+
+separador()
+
 doc_term_matrix = [dictionary.doc2bow(doc) for doc in doc_clean]
+# doc term
+#print('Doc term')
+#print(doc_term_matrix)
 
 
 # Creating the object for LDA model using gensim library
@@ -74,8 +95,6 @@ n_topics = 10
 ldamodel = Lda(doc_term_matrix, num_topics=n_topics, id2word = dictionary, passes=50)
 
 #print(ldamodel.print_topics(num_topics=n_topics, num_words=10))
-print('Sem formatação')
-print(ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=False))
 topics = ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=False)
 
 # salva o modelo em binário
@@ -89,18 +108,19 @@ with open('outcome/topics.p', 'wb') as file:
 separador()
 print('Tópicos sem formatação')
 print(topics)
+
 #ldatmp = ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=True)
 #print('teste')
 #print(ldatmp[0])
 
-
+separador()
 print('Tópicos formatados')
 for i in range(0, n_topics):
     print('Topic {}'.format(i))
     print(ldamodel.show_topic(topicid=i, topn=10))
 
 
-tmptst = ldamodel.show_topic(topicid=7, topn=10)
-print(tmptst[6][0])#tmptst = ldamodel.show_topic(topicid=7, topn=10)
 #tmptst = ldamodel.show_topic(topicid=7, topn=10)
 #print(tmptst[6][0])
+
+
