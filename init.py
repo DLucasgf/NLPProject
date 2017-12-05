@@ -57,20 +57,6 @@ def clean(doc):
     # remove numbers
     numbers_free = ''.join([i for i in stop_free if not i.isdigit()])
 
-    # save temp files
-    file = open('tmp/doc_split.txt', 'w', encoding="utf8")
-    file.write(str(doc_split))
-    file.close()
-    file = open('tmp/punc_free.txt', 'w', encoding="utf8")
-    file.write(str(punc_free))
-    file.close()
-    file = open('tmp/stop_free.txt', 'w', encoding="utf8")
-    file.write(str(stop_free))
-    file.close()
-    file = open('tmp/numbers_free.txt', 'w', encoding="utf8")
-    file.write(str(numbers_free))
-    file.close()
-
     return numbers_free
 
 doc_clean = [clean(doc).split() for doc in docs_raw]
