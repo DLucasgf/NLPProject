@@ -6,6 +6,11 @@ from gensim import corpora
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
+
+# separador das informações
+def separador():
+    print(90 * "-")
+
 # lista dos documentos
 docs_list = os.listdir('docs')
 # sublista dos documentos
