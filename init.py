@@ -1,6 +1,7 @@
 import os
 import gensim
 import string
+import pickle
 from gensim import corpora
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -85,16 +86,31 @@ ldamodel = Lda(doc_term_matrix, num_topics=n_topics, id2word = dictionary, passe
 #print(ldamodel.print_topics(num_topics=n_topics, num_words=10))
 print('Sem formatação')
 print(ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=False))
+topics = ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=False)
 
+# salva o modelo em binário
+ldamodel.save('outcome/modelLDA')
+
+# salva os tópicos em arquivo pickle
+with open('outcome/topics.p', 'wb') as file:
+    pickle.dump(topics, file)
+    print("Tópicos salvos no arquivo topics.p")
+
+separador()
+print('Tópicos sem formatação')
+print(topics)
 #ldatmp = ldamodel.show_topics(num_topics=n_topics, num_words=10, log=False, formatted=True)
 #print('teste')
 #print(ldatmp[0])
 
 
+print('Tópicos formatados')
 for i in range(0, n_topics):
     print('Topic {}'.format(i))
     print(ldamodel.show_topic(topicid=i, topn=10))
 
 
 tmptst = ldamodel.show_topic(topicid=7, topn=10)
-print(tmptst[6][0])
+print(tmptst[6][0])#tmptst = ldamodel.show_topic(topicid=7, topn=10)
+#tmptst = ldamodel.show_topic(topicid=7, topn=10)
+#print(tmptst[6][0])
