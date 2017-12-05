@@ -15,7 +15,6 @@ def separador():
 docs_list = os.listdir('docs')
 # sublista dos documentos
 docs_list2 = docs_list[5:10]
-outputs = "outputs"
 
 #print(docs_list)
 #print(len(docs_list))
