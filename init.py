@@ -21,7 +21,7 @@ docs_list2 = docs_list[5:10]
 
 # read docs
 docs_raw = []
-for item in docs_list2:
+for item in docs_list:
     file = os.path.join('docs', item)
     f_object = open(file, 'r', encoding="utf8")
     docs_raw.append(f_object.read())
