@@ -22,7 +22,12 @@ Para encontrar os 10 principais tópicos, foi utilizado o Latent Dirichlet Alloc
 A saída, contendo o número de tópicos e assuntos, é uma lista e corresponde à seguinte estrutura:
 
 ```sh
-[(0, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)]), (1, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)]), (t, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)])]
+[
+    (0, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)]),
+    (1, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)]),
+    ...,
+    (t, [(termo1, probabilidade_termo1), (termo2, probabilidade_termo2), ..., (termoN, probabilidade_termoN)])
+]
 ```
 
 Onde: 
